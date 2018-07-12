@@ -2,9 +2,11 @@
 var SearchPropertiesPage = function() {
 	
 	
-	this.getSearchPropertiesCount = function() {
-		browser.driver.sleep(2000);
-    return element(by.xpath("//div[@id='srp-sort-count-wrap']/span")).getText();
+	this.getSearchPropertiesCount = function() {		
+		var elementText = element(by.xpath("//div[@id='srp-sort-count-wrap']/span"));
+		var waitUntil = protractor.ExpectedConditions;
+                browser.wait(waitUntil.presenceOf(elementText), 300, 'Text element is taking too long to display');
+         return elementText.getText();
     };
 	
 	this.getSelectedPrice = function() {
